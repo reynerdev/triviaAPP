@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="168" height="50" viewBox="0 0 168 50">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff8906;
+      }
+    </style>
+  </defs>
+  <path id="Rectangle_612" data-name="Rectangle 612" class="cls-1" d="M5,0H168a0,0,0,0,1,0,0V50a0,0,0,0,1,0,0H5a5,5,0,0,1-5-5V5A5,5,0,0,1,5,0Z"/>
+</svg>
