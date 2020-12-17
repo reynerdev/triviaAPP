@@ -38,7 +38,7 @@ body {
 .container {
   position: relative;
   background-color: $color-main;
-  margin: -10vh auto;
+  margin: 10vh auto;
   width: 80%;
   height: 100vh;
   min-width: 800px;
@@ -49,9 +49,7 @@ body {
 
   @include centerxy();
   .selectionContainer {
-    // border-style: solid;
-    // border-color: #0d0d0d;
-
+    // each r
     background-color: $color-main;
     display: flex;
     flex-direction: row;
@@ -63,15 +61,18 @@ body {
   .selectionContainer--dashed {
     height: 120px;
     border-color: #0d0d0d;
-    margin: 30px auto;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
     width: 80%;
     background-color: #e0e2e7;
     box-shadow: inset 0 2px 2px rgba(25, 71, 88, 0.1),
       0 2px 0 hsla(0, 0%, 100%, 0.15);
   }
-}
 
-.btn {
+  .selectionContainer--start {
+  }
 }
 
 .btn--orange {
@@ -114,18 +115,55 @@ body {
   .dropdown {
     position: absolute;
     top: 80px;
-    margin-left: 0;
+    // margin-left: 0;
     right: 0;
     background-color: WHITE;
-    padding: 60px;
+    // padding: 120px;
     z-index: 3;
-    li {
+    display: block;
+    // overflow-y: scroll;
+
+    ul {
+      // width: 100%;
+      display: block;
+      height: 100%;
+    }
+
+    ul li {
+      // width: 100%;
+
       list-style-type: none;
       margin: 9px;
+      padding: 25px;
+      // padding: 100px;
+      display: block;
     }
 
     a {
+      display: flex;
       text-decoration: none;
+      height: 20px;
+      align-items: center;
+    }
+
+    &::before {
+      content: ' ';
+      position: absolute;
+      top: -20px;
+      transform: translateX(190%);
+      border: 10px solid;
+      border-color: transparent transparent white transparent;
+    }
+
+    ul::-webkit-scrollbar {
+      width: 8px;
+      border-radius: 0 8px 8px 0;
+      background-color: #e0e2e7;
+    }
+
+    ul::-webkit-scrollbar-thumb {
+      background-color: #e53170;
+      border-radius: 0 8px 8px 0;
     }
   }
 }
@@ -183,7 +221,6 @@ body {
 }
 
 .btn--start {
-  margin-top: 100px;
   padding: 20px 120px;
   font-size: 30px;
   box-shadow: 0 10px 10px hsla(0, 0%, 0%, 0.15);

@@ -1,3 +1,4 @@
 import './style.scss';
+import { fetchCategory } from './start.js';
 
-console.log('HOla');
+// fetchCategory();
