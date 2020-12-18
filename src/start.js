@@ -24,7 +24,7 @@ const createDropdown = (data) => {
 };
 
 const updateDropdown = (dropdownHtml) => {
-  console.log(dropdownHtml, 'Hola');
+  // console.log(dropdownHtml, 'Hola');
   let dropdownCategory = document.getElementById('dropdownId');
   dropdownCategory.innerHTML = '';
   dropdownCategory.innerHTML = dropdownHtml;
