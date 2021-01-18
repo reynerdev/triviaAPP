@@ -258,9 +258,39 @@ body {
 .containerStartGame {
   margin: 0 auto;
   width: 80%;
-  height: 100vh;
-  min-width: 800px;
-  min-height: 800px;
+  height: 80%; //100vh
+  // min-width: 800px;
+  // min-height: 800px;
   display: flex;
   flex-direction: column;
+
+  .questionCounting {
+    // padding: 10px;
+    display: flex;
+
+
+  }
+
+
+  .question{
+    display: flex;
+    padding: 40px;
+    font-size: 26px;
+    font-weight: 700;
+    overflow-wrap: none;
+  }
+
+  .answerBox{
+    
+    background-color: white;
+    display: flex;
+    padding: 40px;
+    // margin-left: 100px;
+    // margin-right: 100px;
+
+    .questionBox {
+      display: flex;  
+      width: 400px;
+    }
+  }
 }
