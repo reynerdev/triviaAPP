@@ -6,42 +6,122 @@
     <title>Template</title>
   </head>
   <body>
+    <div class="circle">
+      <img src="/Ellipse 20.svg" alt="" width="800px" height="800px" />
+    </div>
+    <div class="rectangle">
+      <img src="/Rectangle 1137.svg" alt="" width="500px" height="500px" />
+    </div>
+    <div class="circle--2">
+      <img src="/Ellipse 21.svg" alt="" width="800px" height="800px" />
+    </div>
     <div class="container">
       <div class="selectionContainer">
         <h1>Let's start</h1>
       </div>
 
       <div class="selectionContainer">
-        <div class="btn btn--orange btn--rowflex">
-          <span class="btn__textSelection">Category</span>
-          <img class="btn__arrow" src="/down-arrow.svg" />
+        <div class="btn btn--selection btn--rowflex">
+          <span class="btn__textSelection btn--orange btn--category"
+            >Category</span
+          >
+          <div>
+            <img class="btn__arrow btn--orange" src="/down-arrow.svg" />
+          </div>
+          <div class="dropdown dropdown--category">
+            <ul id="dropdownId-1"></ul>
+          </div>
         </div>
-        <div class="btn btn--orange btn--rowflex">
-          <span class="btn__textSelection">Dificulty</span>
-          <span class="btn__arrow"><div>arrow</div></span>
+        <div class="btn btn--selection btn--rowflex">
+          <span class="btn__textSelection btn--orange btn--dificulty"
+            >Dificulty</span
+          >
+          <div>
+            <img class="btn__arrow btn--orange" src="/down-arrow.svg" />
+          </div>
+          <div class="dropdown dropdown--category">
+            <ul id="dropdownId-2"></ul>
+          </div>
         </div>
-        <div class="btn btn--orange btn--rowflex">
-          <span class="btn__textSelection">Type</span>
-          <span class="btn__arrow"><div>arrow</div></span>
+        <div class="btn btn--selection btn--rowflex btn--type">
+          <span class="btn__textSelection btn--orange">Type</span>
+          <div>
+            <img class="btn__arrow btn--orange" src="/down-arrow.svg" />
+          </div>
+          <div class="dropdown dropdown--category">
+            <ul id="dropdownId-3"></ul>
+          </div>
         </div>
       </div>
       <div
         class="selectionContainer selectionContainer--dashed selectionContainer--white"
+        id="selectedContainer"
       >
-        <div class="btn btn--little btn--pink btn--whiteLetter">
-          <span class="btn__cross"><div>cross</div></span>
-          <span class="btn__textSelection--white">Futbol</span>
+        <div
+          class="btn btn--little btn--pink btn--whiteLetter"
+          id="categoryBox"
+        >
+          <!-- <span class="btn__cross"
+            ><img src="./img/cross.svg" alt="" height="12px" width="12px"
+          /></span>
+          <span class="btn__textSelection">Futbol</span> -->
         </div>
-        <div class="btn btn--little btn--pink btn--whiteLetter">
-          <span class="btn__cross"><div>cross</div></span>
-          <span class="btn__textSelection--white"> Medium</span>
+        <div
+          class="btn btn--little btn--pink btn--whiteLetter"
+          id="difficultyBox"
+        >
+          <!-- <span class="btn__cross"
+            ><img src="./img/cross.svg" alt="" height="12px" width="12px"
+          /></span>
+          <span class="btn__textSelection"> Medium</span> -->
         </div>
-        <div class="btn btn--little btn--pink btn--whiteLetter">
-          <span class="btn__cross"><div>cross</div></span>
-          <span class="btn__textSelection--white">True/False</span>
+        <div class="btn btn--little btn--pink btn--whiteLetter" id="typeBox">
+          <!-- <span class="btn__cross"
+            ><img src="./img/cross.svg" alt="" height="12px" width="12px"
+          /></span>
+          <span class="btn__textSelection">True/False</span> -->
         </div>
       </div>
-      <div class="selectionContainer selectionContainer--start"></div>
+      <div class="selectionContainer selectionContainer--start">
+        <div class="btn btn--start btn--pink btn--whiteLetter">Start</div>
+      </div>
+    </div>
+    <div class="containerStartGame">
+      <div class="questionCounting">questionCounting</div>
+
+      <div class="question">Where Macchu Picchu is Located?</div>
+
+      <div class="answerBox">
+        <div class="questionBox">
+          <div class="questionNumber">1</div>
+          <div class="questionAnswer">Cuzco</div>
+        </div>
+        <div class="questionBox">
+          <div class="questionNumber">1</div>
+          <div class="questionAnswer">Cuzco</div>
+        </div>
+        <div class="questionBox">
+          <div class="questionNumber">1</div>
+          <div class="questionAnswer">Cuzco</div>
+        </div>
+        <div class="questionBox">
+          <div class="questionNumber">1</div>
+          <div class="questionAnswer">Cuzco</div>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div class="point">
+          <span class="pointTxt">Point</span>
+          <span class="pointValue" id="EarnedPoints">100</span>
+          <span class="pointPt">pt</span>
+        </div>
+
+        <div class="time">
+          <span class="timeTxt">Time:</span>
+          <span class="timeValue">01:00</span>
+        </div>
+      </div>
     </div>
   <script src="main.js"></script></body>
 </html>
