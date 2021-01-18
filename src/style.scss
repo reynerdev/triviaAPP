@@ -254,3 +254,13 @@ body {
   box-shadow: 0 10px 10px hsla(0, 0%, 0%, 0.15);
   border-radius: 5px 5px 5px 5px;
 }
+
+.containerStartGame {
+  margin: 0 auto;
+  width: 80%;
+  height: 100vh;
+  min-width: 800px;
+  min-height: 800px;
+  display: flex;
+  flex-direction: column;
+}
