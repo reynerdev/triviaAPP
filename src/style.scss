@@ -257,7 +257,7 @@ body {
 
 .containerStartGame {
   margin: 0 auto;
-  width: 80%;
+  width: 1155px;
   height: 80%; //100vh
   // min-width: 800px;
   // min-height: 800px;
@@ -266,31 +266,102 @@ body {
 
   .questionCounting {
     // padding: 10px;
+    margin-top: 40px;
     display: flex;
-
-
+    justify-content: center;
   }
 
-
-  .question{
+  .question {
+    text-align: center;
     display: flex;
-    padding: 40px;
-    font-size: 26px;
+    padding: 40px 0;
+    font-size: 48px;
     font-weight: 700;
     overflow-wrap: none;
+    justify-content: center;
   }
 
-  .answerBox{
-    
+  .answerBox {
     background-color: white;
     display: flex;
-    padding: 40px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 40px 0;
+    box-shadow: 0 15px 35px hsla(0, 0%, 0%, 0.15);
+    // padding: 50px;
+    // height: 400px;
     // margin-left: 100px;
     // margin-right: 100px;
 
     .questionBox {
-      display: flex;  
-      width: 400px;
+      display: flex;
+      background-color: #ff8906;
+      height: 100px;
+      width: 410px;
+      margin: 40px;
+      align-items: center;
+      box-shadow: 1px 3px 3px hsla(0, 0%, 0%, 0.2);
+
+      // margin-left: 110px;
+      // margin-top: 80px;
+
+      .questionNumber {
+        background-color: white;
+        display: flex;
+        border-radius: 50%;
+        width: 64px;
+        height: 64px;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+        font-size: 48px;
+        margin-left: 21px;
+      }
+
+      .questionAnswer {
+        // width: 100%;
+        margin-left: 21px;
+        font-size: 18px;
+        font-weight: 500;
+        // ove?rflow-y: scroll;
+      }
     }
+
+    // .questionBox:nth-child(odd) {
+    //   margin-left: 0;
+    // }
+  }
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding: 0 80px;
+    .pointTxt {
+      font-size: 48px;
+      font-weight: 700;
+    }
+
+    .pointValue {
+      margin-left: 15px;
+      font-size: 48px;
+      font-weight: 700;
+    }
+
+    .pointPt {
+      font-size: 48px;
+      font-weight: 700;
+    }
+
+    .time {
+      font-size: 48px;
+      font-weight: 700;
+    }
+  }
+
+  .selectionContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
   }
 }
