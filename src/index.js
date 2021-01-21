@@ -22,15 +22,8 @@ startButton.addEventListener('click', function () {
   container.style.display = 'none';
 });
 
-bullet();
-bullet();
-bullet();
-bullet();
-bullet();
-bullet();
-bullet();
-bullet();
-bullet();
+bullet(3);
+
 // document
 //   .querySelector('.btn--selection')
 //   .addEventListener('click', function () {
