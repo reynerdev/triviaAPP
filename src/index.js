@@ -1,10 +1,8 @@
 import './style.scss';
 import { fetchCategory, selectedValues } from './start.js';
 import { bullet } from './bullet.js';
+import { manejadorPreguntas, retrieveQuestion } from './retrieveQuestions.js';
 window.onload = fetchCategory;
-// console.log(document.querySelector('.dropdown'));
-// console.log(document.querySelector('.btn--selection'), 'ss');
-
 document.querySelectorAll('.btn--selection').forEach((element) => {
   element.addEventListener('click', function () {
     console.log(this);
@@ -22,8 +20,7 @@ startButton.addEventListener('click', function () {
   container.style.display = 'none';
 });
 
-bullet(3);
-
+retrieveQuestion();
 // document
 //   .querySelector('.btn--selection')
 //   .addEventListener('click', function () {

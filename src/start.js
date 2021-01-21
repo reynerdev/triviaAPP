@@ -3,7 +3,7 @@ import TOKEN from './utils';
 import { selected, creandoObserver, ElementObserver } from './utils';
 
 const fetchCategory = () => {
-  fetch('https://opentdb.com/api_category.php')
+  fetch('https://opentdb.com/api.php?amount=10&encode=base64&')
     .then((response) => {
       return response.json();
     })
