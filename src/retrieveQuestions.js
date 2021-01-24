@@ -12,11 +12,13 @@ const retrieveQuestion = () => {
   fetch(URI)
     .then((response) => response.json())
     .then((questions) => {
-      console.log('question');
-      questionArray = questions;
-      console.log('retrieve', questionArray);
 
-      const mp = new manejadorPreguntas(questionArray.results);
+
+      console.log(questions.results.length,'question');
+      questionArray = questions;
+      console.log('retrieve', questionArray);   
+
+      const mp = new manejadorPreguntas(questionArray.results,true);
       mp.start();
 
       //pongo el contener de block a none
@@ -24,11 +26,12 @@ const retrieveQuestion = () => {
     .catch((err) => console.log(err));
 };
 class manejadorPreguntas {
-  constructor(questionList) {
+  constructor(questionList,startTime) {
     this.points = 0;
     this.time = 0;
     this.currentQuestion = 0;
     this.questionList = questionList;
+    this.startTime = startTime ;
     // console.log(this.questionList, 'QuestionList');
   }
 
@@ -36,9 +39,24 @@ class manejadorPreguntas {
     this.currentQuestion++;
     this.updateListBullets();
     this.answerBlock();
+
+    if (this.startTime === true ) {
+      console.log('SETTTTTTTTTTTTT')
+      setInterval(() => {
+        let timeValueElement = document.getElementById('timeValue')
+        timeValueElement.innerHTML = this.time 
+        this.time = this.time + 1
+        console.log('setTimeOut')
+      }, 1000);
+      this.startTime = false  
+    }
+    
+    
   }
 
   updateListBullets() {
+    let bulletContainer = document.getElementById('questionCounting');
+    bulletContainer.innerHTML=''
     bullet(this.currentQuestion);
   }
 
@@ -77,15 +95,36 @@ class manejadorPreguntas {
       let questionNumber = document.createElement('div');
       let questionAnswer = document.createElement('div');
       questionBox.className = 'questionBox';
-      //   questionBox.setAttribute('id', value);
+      // animate.css class 
+
+      
+
       questionNumber.className = 'questionNumber';
       questionAnswer.className = 'questionAnswer';
       questionNumber.innerHTML = index + 1;
       questionAnswer.innerHTML = element.ans;
-      questionBox.addEventListener(
-        'click',
-        this.addEventListenerFunction(element).bind(this)
-      );
+      questionBox.addEventListener('click', ()=>{
+
+        if(element.correct===true){
+          console.log('element correct true')
+          this.points += 10
+
+           let allQuestionBoxes = document.getElementsByClassName(['questionBox'])
+           
+          console.log(questionBox,'queeeeeeeestionBox')
+          console.log(allQuestionBoxes,'allllllllllquestion')
+          this.start()
+        }else{
+          questionBox.classList.add('animate__animated', 'animate__headShake');
+          this.start()
+        }
+
+
+      })
+      // questionBox.addEventListener(
+      //   'click',
+      //   this.addEventListenerFunction(element).bind(this)
+      // );
 
       questionBox.appendChild(questionNumber);
       questionBox.appendChild(questionAnswer);

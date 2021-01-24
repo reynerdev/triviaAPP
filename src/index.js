@@ -2,7 +2,7 @@ import './style.scss';
 import { fetchCategory, selectedValues } from './start.js';
 import { bullet } from './bullet.js';
 import { manejadorPreguntas, retrieveQuestion } from './retrieveQuestions.js';
-window.onload = fetchCategory;
+// window.onload = fetchCategory;
 document.querySelectorAll('.btn--selection').forEach((element) => {
   element.addEventListener('click', function () {
     console.log(this);

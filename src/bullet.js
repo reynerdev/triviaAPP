@@ -1,6 +1,6 @@
 function bullet(currentQuestion) {
 
-  for (let index = 1; index < 10; index++) {
+  for (let index = 1; index <= 10; index++) {
   
     console.log('InsideBullet');
     let bulletContainer = document.getElementById('questionCounting');
@@ -35,8 +35,8 @@ function bullet(currentQuestion) {
   
     // Line to the right of the circle
   
-    let lastElement = false;
-    if (lastElement !== true) {
+    // let lastElement = false;
+    if (index < 10) {
       canvas.beginPath;
       canvas.moveTo(w, h / 2);
       canvas.lineTo(w + 20, h / 2);
@@ -60,6 +60,7 @@ function bullet(currentQuestion) {
       
     }
 
+    
     bulletContainer.appendChild(canvasElement);
   }
 }

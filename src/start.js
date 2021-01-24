@@ -1,9 +1,9 @@
 // fill our dropdown menu with the categories
 import TOKEN from './utils';
 import { selected, creandoObserver, ElementObserver } from './utils';
-
+import 'animate.css'
 const fetchCategory = () => {
-  fetch('https://opentdb.com/api.php?amount=10&encode=base64&')
+  fetch('https://opentdb.com/api.php?amount=10')
     .then((response) => {
       return response.json();
     })
