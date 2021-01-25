@@ -1,68 +1,160 @@
 import { bullet } from './bullet';
 import TOKEN from './utils';
-const retrieveQuestion = () => {
+
+let idInterval = '';
+const retrieveQuestion = (selectedData) => {
   //   const TOKEN = TOKEN;
   let questionArray = [];
   // Type: multiple // boolean
   // category: is the ID
   console.log('retrieveQuestion');
-  // const URI = `https://opentdb.com/api.php?amount=10&category=${category}&difficulty=${dificult}&type=${type}`
-  const URI = 'https://opentdb.com/api.php?amount=10';
+  // const URI = 'https://opentdb.com/api.php?amount=10';
+  const URI = returnUri(selectedData);
 
+  console.log(URI, 'NEWWWWWWWWWWWWWWWWWW URI');
   fetch(URI)
     .then((response) => response.json())
     .then((questions) => {
-
-
-      console.log(questions.results.length,'question');
+      if (questions.results) {
+        window.alert(
+          'Theres no questions for this combination. Please click on Again!'
+        );
+        return;
+      }
+      console.log(questions.results.length, 'question');
       questionArray = questions;
-      console.log('retrieve', questionArray);   
+      console.log('retrieve', questionArray);
 
-      const mp = new manejadorPreguntas(questionArray.results,true);
+      const mp = new manejadorPreguntas(questionArray.results, true);
+
       mp.start();
-
-      //pongo el contener de block a none
     })
     .catch((err) => console.log(err));
 };
+
+const returnUri = (selectedData) => {
+  const category =
+    selectedData.category_name === 'Any'
+      ? ''
+      : `&category=${selectedData.category}`;
+  const difficulty =
+    selectedData.dificulty === 'Any'
+      ? ''
+      : `&difficulty=${selectedData.dificulty.toLowerCase()}`;
+  const type =
+    selectedData.type === 'Any'
+      ? ''
+      : selectedData.type === 'Multiple Choice'
+      ? '&type=multiple'
+      : '&type=boolean';
+
+  const URI = `https://opentdb.com/api.php?amount=10${category}${difficulty}${type}`;
+
+  return URI;
+};
+
+const restoreElements = () => {
+  console.log('RESTOREEEEEEEEEEEE ELEMENTS ');
+  let bulletContainer = document.getElementById('questionCounting');
+  let answerBoxElement = document.getElementById('answerBox');
+  // let bottomElement = document.getElementsByClassName('bottom')[0];
+  let bottomElement = document.getElementById('bottom');
+
+  let questionElement = document.getElementById('question');
+
+  // bulletContainer.style.display = 'block'
+  // answerBoxElement.style.height = '410px';
+  answerBoxElement.classList.remove('animate__animated', 'animate__bounceIn');
+  questionElement.classList.remove('animate_animated', 'animate__heartBeat');
+  bulletContainer.removeAttribute('style');
+  answerBoxElement.removeAttribute('style');
+  bottomElement.removeAttribute('style');
+  questionElement.removeAttribute('style');
+  // bulletContainer.style.cssText = null;
+  // answerBoxElement.style.cssText = null;
+  // bottomElement.style.display = null;
+  // questionElement.style.cssText = null;
+  console.log(bottomElement, 'BOTOOOOOOOOOOOOM ELEMENT');
+};
+
 class manejadorPreguntas {
-  constructor(questionList,startTime) {
+  constructor(questionList, startTime) {
     this.points = 0;
     this.time = 0;
-    this.currentQuestion = 0;
+    this.currentQuestion = 1;
     this.questionList = questionList;
-    this.startTime = startTime ;
-    // console.log(this.questionList, 'QuestionList');
+    this.startTime = startTime;
+    this.idInterval = '';
   }
 
   start() {
-    this.currentQuestion++;
     this.updateListBullets();
+    if (this.currentQuestion === 11) {
+      clearInterval(idInterval);
+      let bulletContainer = document.getElementById('questionCounting');
+      let answerBoxElement = document.getElementById('answerBox');
+      let bottomElement = document.getElementById('bottom');
+      // let cloneElement = bottomElement.cloneNode(true);
+      let questionElement = document.getElementById('question');
+
+      let newBottom = `<div class="bottom"  delete='ok' style="margin-top: 0px;">
+      <div class="point">
+        <span class="pointTxt">Points:</span>
+        <span class="pointValue" id="EarnedPoints">${this.points}</span>
+        <span class="pointPt">pt</span>
+      </div>
+
+      <div class="time" style="margin-left: 200px;">
+        <span class="timeTxt">Time:</span>
+        <span class="timeValue" id="timeValue">${this.time}</span>
+        <span class="timeValue" id="timeValue">s</span>
+      </div>
+    </div>`;
+      // quitar el bulleContainer
+      bulletContainer.style.display = 'none';
+
+      // agregar los resultados en el answerBoxElement
+      answerBoxElement.innerHTML = '';
+      answerBoxElement.style.height = '300px';
+      answerBoxElement.classList.add('animate__animated', 'animate__bounceIn');
+      questionElement.innerHTML = 'Final Result !!';
+      questionElement.classList.add('animate_animated', 'animate__heartBeat');
+      questionElement.style.fontSize = '64px';
+      // cloneElement.lastElementChild.style.marginLeft = '200px';
+      // cloneElement.style.marginTop = '0px';
+      // bottomElement.lastElementChild.style.marginLeft = '200px';
+      // bottomElement.style.marginTop = '0px';
+      bottomElement.style.display = 'none';
+      answerBoxElement.innerHTML = newBottom;
+      // bottomElement.style.margin = '50px';
+      console.log(bottomElement);
+      return;
+    }
+
     this.answerBlock();
 
-    if (this.startTime === true ) {
-      console.log('SETTTTTTTTTTTTT')
-      setInterval(() => {
-        let timeValueElement = document.getElementById('timeValue')
-        timeValueElement.innerHTML = this.time 
-        this.time = this.time + 1
-        console.log('setTimeOut')
+    if (this.startTime === true) {
+      console.log('SETTTTTTTTTTTTT');
+      this.idInterval = setInterval(() => {
+        let timeValueElement = document.getElementById('timeValue');
+        timeValueElement.innerHTML = this.time;
+        this.time = this.time + 1;
+        console.log('setTimeOut');
       }, 1000);
-      this.startTime = false  
+      idInterval = this.idInterval;
+      this.startTime = false;
     }
-    
-    
   }
 
   updateListBullets() {
     let bulletContainer = document.getElementById('questionCounting');
-    bulletContainer.innerHTML=''
+    bulletContainer.innerHTML = '';
     bullet(this.currentQuestion);
   }
 
   answerBlock() {
-    console.log(this.questionList, 'answerBlock');
-    let currentQuestion = this.questionList[this.currentQuestion];
+    console.log(this.questionList, 'answerBlock', this.currentQuestion);
+    let currentQuestion = this.questionList[this.currentQuestion - 1];
     let correctAnswer = currentQuestion['correct_answer'];
     let questionElement = document.getElementById('question');
     let answerboxElement = document.getElementById('answerBox');
@@ -85,7 +177,7 @@ class manejadorPreguntas {
     arrAnswers = arrAnswers.sort(() => Math.random() - 0.5);
 
     // we render our questionBox Elements
-    //clean answerBox Element
+    //clean answerBox Element first
 
     answerboxElement.innerHTML = '';
 
@@ -95,36 +187,24 @@ class manejadorPreguntas {
       let questionNumber = document.createElement('div');
       let questionAnswer = document.createElement('div');
       questionBox.className = 'questionBox';
-      // animate.css class 
-
-      
+      // animate.css class
 
       questionNumber.className = 'questionNumber';
       questionAnswer.className = 'questionAnswer';
       questionNumber.innerHTML = index + 1;
       questionAnswer.innerHTML = element.ans;
-      questionBox.addEventListener('click', ()=>{
-
-        if(element.correct===true){
-          console.log('element correct true')
-          this.points += 10
-
-           let allQuestionBoxes = document.getElementsByClassName(['questionBox'])
-           
-          console.log(questionBox,'queeeeeeeestionBox')
-          console.log(allQuestionBoxes,'allllllllllquestion')
-          this.start()
-        }else{
-          questionBox.classList.add('animate__animated', 'animate__headShake');
-          this.start()
+      questionBox.addEventListener('click', () => {
+        if (element.correct === true) {
+          console.log('element correct true');
+          this.points += 100;
+          this.currentQuestion++;
+          this.start();
+        } else {
+          this.currentQuestion++;
+          // questionBox.classList.add('animate__animated', 'animate__headShake');
+          this.start();
         }
-
-
-      })
-      // questionBox.addEventListener(
-      //   'click',
-      //   this.addEventListenerFunction(element).bind(this)
-      // );
+      });
 
       questionBox.appendChild(questionNumber);
       questionBox.appendChild(questionAnswer);
@@ -135,14 +215,6 @@ class manejadorPreguntas {
     // display de Question
 
     questionElement.innerHTML = decodeURI(question);
-  }
-
-  addEventListenerFunction(element) {
-    if (element.correct === true) {
-      this.points++;
-      this.start();
-    } else {
-    }
   }
 }
 
@@ -202,4 +274,4 @@ const createBulletCanvas = () => {
   bulletContainer.appendChild(canvasElement);
 };
 
-export { manejadorPreguntas, retrieveQuestion };
+export { manejadorPreguntas, retrieveQuestion, idInterval, restoreElements };

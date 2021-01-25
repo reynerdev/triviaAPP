@@ -24,6 +24,7 @@ class creandoObserver {
 
   selectedValuesChanged(selectedValues) {
     this.selectedValues = selectedValues;
+    // selected = selectedValues;
     this.notifyObservers(this);
   }
 

@@ -1,14 +1,14 @@
 // fill our dropdown menu with the categories
 import TOKEN from './utils';
 import { selected, creandoObserver, ElementObserver } from './utils';
-import 'animate.css'
+import 'animate.css';
 const fetchCategory = () => {
-  fetch('https://opentdb.com/api.php?amount=10')
+  fetch('https://opentdb.com/api_category.php')
     .then((response) => {
       return response.json();
     })
     .then((data) => {
-      console.log('Fetched');
+      console.log(data, 'Fetched');
 
       //start with the button at any. At the beginning select is filled with any
       let observer = new creandoObserver(selected);
@@ -16,6 +16,7 @@ const fetchCategory = () => {
       observer.addObserver(elementObserver);
       observer.selectedValuesChanged(selected);
       //////////////////////
+      console.log('BEFORE createDropdown');
 
       let dropdownHtml = createDropdown(data.trivia_categories, 'category');
       updateDropdown(dropdownHtml, 'dropdownId-1');
@@ -45,7 +46,8 @@ const fetchCategory = () => {
 
       let btnStart = document.getElementsByClassName('btn--start');
       btnStart[0].addEventListener('click', () => {});
-    });
+    })
+    .catch((err) => console.log(err));
 };
 
 const createDropdown = (data, typeOfDropdown) => {
