@@ -39,10 +39,11 @@ againButtonElement.addEventListener('click', function () {
 let startButton = document.getElementById('startButton');
 startButton.addEventListener('click', function () {
   console.log('startButton');
-  restoreElements();
+  // restoreElements();
   containerElement('none');
   clearInterval(idInterval);
   retrieveQuestion(selected);
   containerStartElement('block');
+  restoreElements();
   console.log(idInterval, 'idInterval');
 });

@@ -5,8 +5,7 @@ let idInterval = '';
 const retrieveQuestion = (selectedData) => {
   //   const TOKEN = TOKEN;
   let questionArray = [];
-  // Type: multiple // boolean
-  // category: is the ID
+
   console.log('retrieveQuestion');
   // const URI = 'https://opentdb.com/api.php?amount=10';
   const URI = returnUri(selectedData);
@@ -15,7 +14,8 @@ const retrieveQuestion = (selectedData) => {
   fetch(URI)
     .then((response) => response.json())
     .then((questions) => {
-      if (questions.results) {
+      console.log('Questionss', questions);
+      if (questions.results.length === 0) {
         window.alert(
           'Theres no questions for this combination. Please click on Again!'
         );
@@ -59,7 +59,9 @@ const restoreElements = () => {
   let answerBoxElement = document.getElementById('answerBox');
   // let bottomElement = document.getElementsByClassName('bottom')[0];
   let bottomElement = document.getElementById('bottom');
-
+  let earnedPoints = document.getElementById('EarnedPoints');
+  console.log('Earned Points');
+  earnedPoints.innerHTML = 0;
   let questionElement = document.getElementById('question');
 
   // bulletContainer.style.display = 'block'
@@ -96,7 +98,7 @@ class manejadorPreguntas {
       let bottomElement = document.getElementById('bottom');
       // let cloneElement = bottomElement.cloneNode(true);
       let questionElement = document.getElementById('question');
-
+      let earnedPoints = document.getElementById('EarnedPoints');
       let newBottom = `<div class="bottom"  delete='ok' style="margin-top: 0px;">
       <div class="point">
         <span class="pointTxt">Points:</span>
@@ -127,6 +129,7 @@ class manejadorPreguntas {
       bottomElement.style.display = 'none';
       answerBoxElement.innerHTML = newBottom;
       // bottomElement.style.margin = '50px';
+      earnedPoints.innerHTML = 0;
       console.log(bottomElement);
       return;
     }
@@ -180,7 +183,7 @@ class manejadorPreguntas {
     //clean answerBox Element first
 
     answerboxElement.innerHTML = '';
-
+    console.log('THISSSSSSSSSSSSSS POINTS', this.points);
     earnedPointsElement.innerHTML = this.points;
     arrAnswers.forEach((element, index) => {
       let questionBox = document.createElement('div');
@@ -188,7 +191,7 @@ class manejadorPreguntas {
       let questionAnswer = document.createElement('div');
       questionBox.className = 'questionBox';
       // animate.css class
-
+      questionBox.classList.add('animate__animated', 'animate__bounceIn');
       questionNumber.className = 'questionNumber';
       questionAnswer.className = 'questionAnswer';
       questionNumber.innerHTML = index + 1;
