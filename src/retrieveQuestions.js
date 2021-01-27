@@ -3,27 +3,27 @@ import TOKEN from './utils';
 
 let idInterval = '';
 const retrieveQuestion = (selectedData) => {
-  //   const TOKEN = TOKEN;
+
   let questionArray = [];
 
-  console.log('retrieveQuestion');
-  // const URI = 'https://opentdb.com/api.php?amount=10';
+
+  
   const URI = returnUri(selectedData);
 
   console.log(URI, 'NEWWWWWWWWWWWWWWWWWW URI');
   fetch(URI)
     .then((response) => response.json())
     .then((questions) => {
-      console.log('Questionss', questions);
+      
       if (questions.results.length === 0) {
         window.alert(
           'Theres no questions for this combination. Please click on Again!'
         );
         return;
       }
-      console.log(questions.results.length, 'question');
+    
       questionArray = questions;
-      console.log('retrieve', questionArray);
+     
 
       const mp = new manejadorPreguntas(questionArray.results, true);
 
@@ -57,26 +57,21 @@ const restoreElements = () => {
   console.log('RESTOREEEEEEEEEEEE ELEMENTS ');
   let bulletContainer = document.getElementById('questionCounting');
   let answerBoxElement = document.getElementById('answerBox');
-  // let bottomElement = document.getElementsByClassName('bottom')[0];
+  
   let bottomElement = document.getElementById('bottom');
   let earnedPoints = document.getElementById('EarnedPoints');
   console.log('Earned Points');
   earnedPoints.innerHTML = 0;
   let questionElement = document.getElementById('question');
 
-  // bulletContainer.style.display = 'block'
-  // answerBoxElement.style.height = '410px';
   answerBoxElement.classList.remove('animate__animated', 'animate__bounceIn');
   questionElement.classList.remove('animate_animated', 'animate__heartBeat');
   bulletContainer.removeAttribute('style');
   answerBoxElement.removeAttribute('style');
   bottomElement.removeAttribute('style');
   questionElement.removeAttribute('style');
-  // bulletContainer.style.cssText = null;
-  // answerBoxElement.style.cssText = null;
-  // bottomElement.style.display = null;
-  // questionElement.style.cssText = null;
-  console.log(bottomElement, 'BOTOOOOOOOOOOOOM ELEMENT');
+
+
 };
 
 class manejadorPreguntas {
@@ -96,7 +91,6 @@ class manejadorPreguntas {
       let bulletContainer = document.getElementById('questionCounting');
       let answerBoxElement = document.getElementById('answerBox');
       let bottomElement = document.getElementById('bottom');
-      // let cloneElement = bottomElement.cloneNode(true);
       let questionElement = document.getElementById('question');
       let earnedPoints = document.getElementById('EarnedPoints');
       let newBottom = `<div class="bottom"  delete='ok' style="margin-top: 0px;">
@@ -112,37 +106,32 @@ class manejadorPreguntas {
         <span class="timeValue" id="timeValue">s</span>
       </div>
     </div>`;
-      // quitar el bulleContainer
+      
       bulletContainer.style.display = 'none';
 
-      // agregar los resultados en el answerBoxElement
+     
       answerBoxElement.innerHTML = '';
       answerBoxElement.style.height = '300px';
       answerBoxElement.classList.add('animate__animated', 'animate__bounceIn');
       questionElement.innerHTML = 'Final Result !!';
       questionElement.classList.add('animate_animated', 'animate__heartBeat');
       questionElement.style.fontSize = '64px';
-      // cloneElement.lastElementChild.style.marginLeft = '200px';
-      // cloneElement.style.marginTop = '0px';
-      // bottomElement.lastElementChild.style.marginLeft = '200px';
-      // bottomElement.style.marginTop = '0px';
       bottomElement.style.display = 'none';
       answerBoxElement.innerHTML = newBottom;
-      // bottomElement.style.margin = '50px';
       earnedPoints.innerHTML = 0;
-      console.log(bottomElement);
+
       return;
     }
 
     this.answerBlock();
 
     if (this.startTime === true) {
-      console.log('SETTTTTTTTTTTTT');
+   
       this.idInterval = setInterval(() => {
         let timeValueElement = document.getElementById('timeValue');
         timeValueElement.innerHTML = this.time;
         this.time = this.time + 1;
-        console.log('setTimeOut');
+     
       }, 1000);
       idInterval = this.idInterval;
       this.startTime = false;
@@ -156,7 +145,7 @@ class manejadorPreguntas {
   }
 
   answerBlock() {
-    console.log(this.questionList, 'answerBlock', this.currentQuestion);
+    
     let currentQuestion = this.questionList[this.currentQuestion - 1];
     let correctAnswer = currentQuestion['correct_answer'];
     let questionElement = document.getElementById('question');
@@ -183,7 +172,7 @@ class manejadorPreguntas {
     //clean answerBox Element first
 
     answerboxElement.innerHTML = '';
-    console.log('THISSSSSSSSSSSSSS POINTS', this.points);
+  
     earnedPointsElement.innerHTML = this.points;
     arrAnswers.forEach((element, index) => {
       let questionBox = document.createElement('div');
@@ -273,7 +262,7 @@ const createBulletCanvas = () => {
   canvas.font = 'bold 30px Arial';
   canvas.fillText('1', w / 2, h / 2 + 10);
   canvas.closePath();
-  console.log(canvasElement, 'canvas Element');
+ 
   bulletContainer.appendChild(canvasElement);
 };
 
