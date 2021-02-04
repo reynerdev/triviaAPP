@@ -34,11 +34,13 @@ document.querySelectorAll('.btn--selection').forEach((element) => {
 let againButtonElement = document.getElementById('againButton');
 againButtonElement.addEventListener('click', function () {
   containerElement('flex');
+  document.body.style.overflowY = ''
+  containerStartElement('none')
 });
 
 let startButton = document.getElementById('startButton');
 startButton.addEventListener('click', function () {
-  
+  document.body.style.overflowY = 'auto'
   containerElement('none');
   clearInterval(idInterval);
   retrieveQuestion(selected);

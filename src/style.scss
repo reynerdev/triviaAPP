@@ -37,6 +37,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   height: 100vh;
   overflow: hidden;
+  
 }
 
 .container {
@@ -46,11 +47,11 @@ body {
   width: 80%;
   height: 100vh;
   min-width: 800px;
-  min-height: 800px;
+  // min-height: 800px;
   background-color: $color-main;
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
+  // margin-top: 200px;
   display: flex;
   align-items: center;
   // @include centerxy();
@@ -248,6 +249,9 @@ body {
   top: -510px;
   left: -510px;
   z-index: 1;
+  
+  
+
 }
 
 .circle--2 {
@@ -280,6 +284,7 @@ body {
   // min-height: 800px;
   display: flex;
   flex-direction: column;
+  
 
 
   .questionCounting {
@@ -293,7 +298,7 @@ body {
     text-align: center;
     display: flex;
     padding: 40px 0;
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 700;
     overflow-wrap: none;
     justify-content: center;
@@ -315,9 +320,9 @@ body {
     .questionBox {
       display: flex;
       background-color: #ff8906;
-      height: 100px;
+      // height: 100px;
       width: 410px;
-      // padding: 10px;
+      padding: 10px;
       margin: 40px;
       align-items: center;
       box-shadow: 1px 3px 3px hsla(0, 0%, 0%, 0.2);
@@ -341,6 +346,7 @@ body {
       .questionAnswer {
         // width: 100%;
         margin-left: 21px;
+        // font-size: 18px;
         font-size: 18px;
         font-weight: 500;
         // ove?rflow-y: scroll;
