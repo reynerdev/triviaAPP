@@ -25,7 +25,7 @@ containerStartElement('none');
 
 document.querySelectorAll('.btn--selection').forEach((element) => {
   element.addEventListener('click', function () {
-    console.log(this);
+    ;
     this.classList.toggle('active');
     console.log(this.name, 'nombre');
   });
@@ -38,12 +38,11 @@ againButtonElement.addEventListener('click', function () {
 
 let startButton = document.getElementById('startButton');
 startButton.addEventListener('click', function () {
-  console.log('startButton');
-  // restoreElements();
+  
   containerElement('none');
   clearInterval(idInterval);
   retrieveQuestion(selected);
   containerStartElement('block');
   restoreElements();
-  console.log(idInterval, 'idInterval');
+
 });
