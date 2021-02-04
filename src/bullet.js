@@ -1,6 +1,6 @@
 function bullet(currentQuestion) {
   for (let index = 1; index <= 10; index++) {
-    console.log('InsideBullet');
+  
     let bulletContainer = document.getElementById('questionCounting');
     let canvasElement = document.createElement('canvas');
     let canvas = canvasElement.getContext('2d');
@@ -55,7 +55,7 @@ function bullet(currentQuestion) {
       canvas.font = 'bold 30px Arial';
       canvas.fillText(index, w / 2, h / 2 + 10);
       canvas.closePath();
-      console.log(canvasElement, 'canvas Element');
+      
     }
 
     bulletContainer.appendChild(canvasElement);
